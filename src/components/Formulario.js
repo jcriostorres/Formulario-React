@@ -6,26 +6,28 @@ const Formulario = () => {
     
     const [entradas, setEntradas] = useState([])
 
-    const[usuario, setUsuario] = useState({
+    /*const[usuario, setUsuario] = useState({
         nombre: '',
         edad: '',
         ocupacion: ''
     })
-
     const handleInputChange = (event) =>{
         setUsuario({
             ...usuario,
             [event.target.name] : event.target.value
         })
     }
-
     const registrarUsuario = (event) => {
         event.preventDefault()
         console.log(usuario.nombre + '  ' +  usuario.edad + '  ' + usuario.ocupacion);
-    }
+    }*/
 
     const onSubmit = (data, e) =>{
         console.log(data);
+        setEntradas([
+            ...entradas,
+            data
+        ])
     }
 
 
@@ -42,32 +44,38 @@ const Formulario = () => {
                         name = "nombre"
                         {...register("nombre",{required: true})}/>
                 </div>
-            <div className="col-md-3">
-                    <input
-                        type="number"
-                        placeholder="Ingrese Edad"
-                        className="form-control"
-                        name = "edad"
-                        {...register("edad",{required: true, min: 1})}
-                    ></input>
-            </div>
+
+                <div className="col-md-3">
+                        <input
+                            type="number"
+                            placeholder="Ingrese Edad"
+                            className="form-control"
+                            name = "edad"
+                            {...register("edad",{required: true, min: 1})}
+                        ></input>
+                </div>
 
 
-            <div className="col-md-3">
-                
-            <select type = "text" name="ocupacion"  className="form-control" {...register("ocupacion",{required: true})}>
-                <option value="empleado" selected>Seleccione ocupacion...</option>
-                <option value="estudiante"> Estudiante</option>
-                <option value="empleado">Empleado</option>
-                <option value="jubilado">Jubilado</option>
-            </select>
-            </div> 
+                <div className="col-md-3">
+                    
+                <select type = "text" name="ocupacion"  className="form-control" {...register("ocupacion",{required: true})}>
+                    <option value="estudiante" selected> Estudiante</option>
+                    <option value="empleado">Empleado</option>
+                    <option value="jubilado">Jubilado</option>
+                </select>
+                </div> 
 
-            <div className = "col-md-3">
-                <button className="btn btn-primary" type="submit">guardar</button>
-            </div>
+                <div className = "col-md-3">
+                    <button className="btn btn-primary" type="submit">guardar</button>
+                </div>
             </form>
-            <h3>{usuario.nombre} - {usuario.edad} - {usuario.ocupacion}</h3>
+            <ul>
+                {
+                    entradas.map(item => 
+                        <li>Nombre: {item.nombre} - Edad: {item.edad} - Ocupacion: {item.ocupacion}.</li>    
+                    )
+                }
+            </ul>
         </Fragment>
      );
 }
