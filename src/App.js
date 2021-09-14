@@ -1,11 +1,10 @@
 import Formulario from './components/Formulario';
-import "./App.css";
 
 
 function App() {
   return (
-    <div class="App">
-        <Formulario class = "formulario"></Formulario>
+    <div className="container mt-5">
+        <Formulario></Formulario>
     </div>
   );
 }
