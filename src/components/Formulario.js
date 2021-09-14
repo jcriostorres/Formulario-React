@@ -5,7 +5,8 @@ const Formulario = () => {
     
     const[usuario, setUsuario] = useState({
         nombre: '',
-        edad: ''
+        edad: '',
+        ocupacion: ''
     })
 
     const handleInputChange = (event) =>{
@@ -15,12 +16,18 @@ const Formulario = () => {
         })
     }
 
+    const registrarUsuario = (event) => {
+        event.preventDefault()
+        console.log(usuario.nombre + '  ' +  usuario.edad + '  ' + usuario.ocupacion);
+
+    }
+
 
 
     return ( 
         <Fragment>
             <h1>Registro de Usuarios</h1>
-            <form className="row">
+            <form className="row" onSubmit = {registrarUsuario}>
                 <div className="col-md-3">
                     <input 
                         type = "text" 
